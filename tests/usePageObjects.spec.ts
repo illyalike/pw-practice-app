@@ -53,3 +53,9 @@ test("paramethrized methods @smoke", async ({ page }) => {
     .datePickerLayoutPage()
     .selectDatepickerWithRangeFromToday(0, 0);
 });
+
+test.only("testing with argos ci", async ({ page }) => {
+  const pageManager = new PageManager(page);
+  await pageManager.navigateTo().formLayoutsPage();
+  await pageManager.navigateTo().datepickerPage();
+});
