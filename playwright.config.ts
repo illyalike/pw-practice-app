@@ -18,6 +18,18 @@ export default defineConfig<TestOptions>({
     // ["junit", { outputFile: "test-results/junitReport.xml" }],
     // ["allure-playwright"],
     ["html"],
+    process.env.CI ? ["dot"] : ["list"],
+    // Add Argos reporter.
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,
+
+        // Set your Argos token (required if not using GitHub Actions).
+        token: process.env.ARGOS_TOKEN,
+      },
+    ],
   ],
   expect: {
     timeout: 5000,
@@ -55,6 +67,7 @@ export default defineConfig<TestOptions>({
       mode: "off",
       size: { width: 1920, height: 1080 },
     },
+    screenshot: "only-on-failure",
   },
 
   projects: [
@@ -129,8 +142,8 @@ export default defineConfig<TestOptions>({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run start',
-    url: 'http://localhost:4200/',
+    command: "npm run start",
+    url: "http://localhost:4200/",
     // reuseExistingServer: !process.env.CI,
   },
 });
