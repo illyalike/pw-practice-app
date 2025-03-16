@@ -1,7 +1,7 @@
 import { test, Page, expect } from "@playwright/test";
 import { PageManager } from "../page-objects/pageManager";
 import { faker } from "@faker-js/faker";
-
+const text = 1;
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
