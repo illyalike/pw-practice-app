@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "module": "es2020",
